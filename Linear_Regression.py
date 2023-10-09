@@ -31,17 +31,28 @@ regressor = LinearRegression()
 #Training the regressor.
 regressor.fit(x_train, y_train)
 
-print('This is the W1 value :',regressor.coef_)
 print('This is the W0 value :',regressor.intercept_)
+print('This is the W1 value :',regressor.coef_)
 print("Predicted Salary :",regressor.predict([[9]]))
 
 #predicting Output:
 y_predict = regressor.predict(x_test)
 
 
+#Checking accuracy
+from sklearn.metrics import r2_score
+
+# Calculate R-squared
+##R squared ranges from 0 to 1, 1 is considered as the perfect fit.
+r_squared = r2_score(y_test, y_predict)
+
+print("R-squared:", r_squared)
+
+
+
 #Visual representation of the training-set.
 plt.scatter(x_train, y_train, color='red')
-plt.plot(x_train,regressor.predict(x_train),color='black')
+plt.plot(x_train,regressor.predict(x_train),color='black') #Regression Line
 plt.xlabel("Experience in Years :")
 plt.ylabel("Salary")
 plt.title("Training-Set Graph Salary vs Exp.")
@@ -49,60 +60,10 @@ plt.show()
 
 # Visual representation of test-set.
 plt.scatter(x_test, y_test, color='red')
-plt.plot(x_train,regressor.predict(x_train),color='black')
+plt.plot(x_train,regressor.predict(x_train),color='black') #Regression Line
 plt.xlabel("Experience in Years :")
 plt.ylabel("Salary")
 plt.title("Test-Set Graph Salary vs Exp.")
 plt.show()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
